@@ -13,6 +13,6 @@ public class TabletPC extends Computer {
     @Override
     public String getInformation() {
         return "Flash memory capacity: " + flashMemoryCapacity +
-                ", Color:" + color +super.getInformation();
+                ", Color:" + color + super.getInformation();
     }
 }

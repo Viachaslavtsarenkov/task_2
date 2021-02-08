@@ -4,9 +4,8 @@ import com.company.product.*;
 import java.io.*;
 import java.util.*;
 
-public class Store<T> {
+public class Store {
 
-    private ArrayList<String> allGoods;
     private ArrayList<Kettle> teapots = new ArrayList<Kettle>();;
     private ArrayList<Laptop> laptops = new ArrayList<Laptop>();;
     private ArrayList<TabletPC> tabletPCs = new ArrayList<TabletPC>();;

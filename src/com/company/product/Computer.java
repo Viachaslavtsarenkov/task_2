@@ -7,7 +7,7 @@ public class Computer extends Product {
     private int memoryROM;
 
     public Computer(double price, double batteryCapacity, double displayInches,
-                    int memoryROM) {
+            int memoryROM) {
         super(price);
         this.batteryCapacity = batteryCapacity;
         this.displayInches = displayInches;

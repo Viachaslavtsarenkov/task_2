@@ -1,7 +1,5 @@
 package com.company.product;
 
-import java.io.FileReader;
-
 public class VacuumCleaner extends Product {
     private int powerConsumption;
     private String filterType;
@@ -25,6 +23,6 @@ public class VacuumCleaner extends Product {
     public String getInformation() {
         return "Power consumption:" + powerConsumption + ", Filter type:" + filterType +
                 ", Bag type" + bagType + ", Want type:" + wantType +
-                ", Cleaning width" + cleaningWidth +  super.getInformation();
+                ", Cleaning width" + cleaningWidth + super.getInformation();
     }
 }

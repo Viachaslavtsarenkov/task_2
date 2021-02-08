@@ -6,7 +6,8 @@ public class KitchenAppliances extends Product {
     private double weight;
     private int powerConsumption;
 
-    public KitchenAppliances(double price, int powerConsumption, double width, double height, double weight) {
+    public KitchenAppliances(double price, int powerConsumption, double width,
+            double height, double weight) {
         super(price);
         this.width = width;
         this.height = height;
