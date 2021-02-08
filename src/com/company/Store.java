@@ -38,12 +38,12 @@ public class Store {
                     case "Kettle":
                         teapots.add(new Kettle(Integer.parseInt(product[1]), Double.parseDouble(product[3]),
                                 Double.parseDouble(product[5])));
-                    break;
+                        break;
                     case "Laptop":
                         laptops.add(new Laptop(Double.parseDouble(product[1]), product[3],
                                 Integer.parseInt(product[5]), Integer.parseInt(product[7]),Double.parseDouble(product[9]),
                                 Double.parseDouble(product[11]), Double.parseDouble(product[13])));
-                    break;
+                        break;
                     case "Oven":
                         ovens.add(new Oven(Integer.parseInt(product[1]), Double.parseDouble(product[3]),
                                 Integer.parseInt(product[5]), Integer.parseInt(product[7]),
