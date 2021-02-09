@@ -4,15 +4,9 @@ import com.company.product.*;
 import java.io.*;
 import java.util.*;
 
-public class Store {
+public class Store<T> {
 
-    private ArrayList<Kettle> teapots = new ArrayList<Kettle>();;
-    private ArrayList<Laptop> laptops = new ArrayList<Laptop>();;
-    private ArrayList<TabletPC> tabletPCs = new ArrayList<TabletPC>();;
-    private ArrayList<Oven> ovens = new ArrayList<Oven>();;
-    private ArrayList<Refrigerator> refrigerators = new ArrayList<Refrigerator>();;
-    private ArrayList<Speakers> allSpeakers = new ArrayList<Speakers>();;
-    private ArrayList<VacuumCleaner> vacuumCleaners = new ArrayList<VacuumCleaner>();;
+    private List<Product> allGoods = new ArrayList<>();
 
     public Store() {
         getDate();
@@ -36,40 +30,25 @@ public class Store {
                 String product[] = line.substring(name.length() + 3).split("=|, ");
                 switch (name) {
                     case "Kettle":
-                        teapots.add(new Kettle(Integer.parseInt(product[1]), Double.parseDouble(product[3]),
-                                Double.parseDouble(product[5])));
-                        break;
+                        allGoods.add(new Kettle.KettleBuilder(product).build());
+                    break;
                     case "Laptop":
-                        laptops.add(new Laptop(Double.parseDouble(product[1]), product[3],
-                                Integer.parseInt(product[5]), Integer.parseInt(product[7]),Double.parseDouble(product[9]),
-                                Double.parseDouble(product[11]), Double.parseDouble(product[13])));
-                        break;
+                        allGoods.add(new Laptop.LaptopBuilder(product).build());
+                    break;
                     case "Oven":
-                        ovens.add(new Oven(Integer.parseInt(product[1]), Double.parseDouble(product[3]),
-                                Integer.parseInt(product[5]), Integer.parseInt(product[7]),
-                                Double.parseDouble(product[9]), Double.parseDouble(product[11]),
-                                Double.parseDouble(product[13])));
+                        allGoods.add(new Oven.OvenBuilder(product).build());
                         break;
                     case "Refrigerator":
-                        refrigerators.add(new Refrigerator(Integer.parseInt(product[1]),
-                                Double.parseDouble(product[3]),
-                                Integer.parseInt(product[5]),Double.parseDouble(product[7]),
-                                Integer.parseInt(product[9]), Integer.parseInt(product[11]),
-                                Double.parseDouble(product[13])));
+                        allGoods.add(new Refrigerator.RefrigeratorBuilder(product).build());
                         break;
                     case "Speakers":
-                       allSpeakers.add(new Speakers(Integer.parseInt(product[1]), Integer.parseInt(product[3]),
-                                product[5], Integer.parseInt(product[7]), Double.parseDouble(product[9])));
+                        allGoods.add(new Speakers.SpeakersBuilder(product).build());
                         break;
                     case "TabletPC":
-                        tabletPCs.add(new TabletPC(Double.parseDouble(product[1]), Double.parseDouble(product[3]),
-                                Integer.parseInt(product[5]), Integer.parseInt(product[7]), product[9],
-                                Double.parseDouble(product[11])));
+                        allGoods.add(new TabletPC.TabletPCBuilder(product).build());
                         break;
                     case "VacuumCleaner":
-                        vacuumCleaners.add(new VacuumCleaner(Integer.parseInt(product[1]),product[3],
-                                product[5], product[7], Integer.parseInt(product[9]), Integer.parseInt(product[11]),
-                                Double.parseDouble(product[13])));
+                        allGoods.add(new VacuumCleaner.VacuumCleanerBuilder(product).build());
                         break;
                     default:
                         break;
@@ -83,84 +62,21 @@ public class Store {
         }
     }
 
-    public double getMinPrice(String name){
+    public double getMinPrice(List<Product> category){
         double result = 0;
-        switch (name) {
-            case "Kettle":
-                Collections.sort(teapots);
-                result = teapots.get(0).getPrice();
-                break;
-            case "Laptop":
-                Collections.sort(laptops);
-                result = laptops.get(0).getPrice();
-                break;
-            case "Oven":
-                Collections.sort(ovens);
-                result = ovens.get(0).getPrice();
-                break;
-            case "Refrigerator":
-                Collections.sort(refrigerators);
-                result = refrigerators.get(0).getPrice();
-                break;
-            case "Speakers":
-                Collections.sort(allSpeakers);
-                result = allSpeakers.get(0).getPrice();
-                break;
-            case "TabletPC":
-                Collections.sort(tabletPCs);
-                result = tabletPCs.get(0).getPrice();
-                break;
-            case "VacuumCleaner":
-                Collections.sort(vacuumCleaners);
-                result = vacuumCleaners.get(0).getPrice();
-                break;
-            default:
-                break;
-        }
+        Collections.sort(category);
+        result = category.get(0).getPrice();
         return  result;
     }
 
-    public void getAllInformation(String name) {
-        switch (name) {
-            case "Kettle":
-                for (Kettle data : teapots) {
-                    System.out.println(data.getInformation());
-                }
-                break;
-            case "Laptop":
-                for (Laptop data : laptops) {
-                    System.out.println(data.getInformation());
-                }
-                break;
-            case "Oven":
-                for(Oven data : ovens) {
-                    System.out.println(data.getInformation());
-                }
-                break;
-            case "Refrigerator":
-                for (Refrigerator data : refrigerators) {
-                    System.out.println(data.getInformation());
-                }
-                break;
-            case "Speakers":
-                for (Speakers data : allSpeakers) {
-                    System.out.println(data.getInformation());
-                }
-                break;
-            case "TabletPC":
-                for (TabletPC data : tabletPCs) {
-                    System.out.println(data.getInformation());
-                }
-
-                break;
-            case "VacuumCleaner":
-                for (VacuumCleaner data : vacuumCleaners) {
-                    System.out.println(data.getInformation());
-                }
-                break;
-            default:
-                break;
+    public List<Product> getAllInformation(String name) {
+        List<Product> allInformationOfCategory = new ArrayList<>();
+        for(Product good : allGoods) {
+            if(good instanceof Kettle){
+               allInformationOfCategory.add(good);
+            }
         }
+        return allInformationOfCategory;
     }
 
 }
